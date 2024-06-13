@@ -1,9 +1,6 @@
- import * as msal from "@azure/msal-browser";
+ 
  import * as microsoftTeams from "@microsoft/teams-js";
- import { msalConfig, loginRequest } from "./authConfig";
-
- const msalInstance = new msal.PublicClientApplication(msalConfig);
- await msalInstance.initialize();
+ 
  export const getAccessToken = async () => {
    return new Promise((resolve, reject) => {
      microsoftTeams.initialize();
