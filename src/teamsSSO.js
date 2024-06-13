@@ -10,7 +10,7 @@
 
      microsoftTeams.authentication.getAuthToken({
        successCallback: (token) => {
-        await msalInstance.handleRedirectPromise().then((tokenResponse) => {
+        msalInstance.handleRedirectPromise().then((tokenResponse) => {
            if (tokenResponse) {
              resolve(tokenResponse.accessToken);
            } else {
