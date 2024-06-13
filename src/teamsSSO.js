@@ -18,29 +18,32 @@
  //};
 
 // src/auth.js
+// src/auth.js
 import { msalInstance, loginRequest } from "./authConfig";
 import * as microsoftTeams from "@microsoft/teams-js";
 
 export const getAccessToken = async () => {
     return new Promise((resolve, reject) => {
         microsoftTeams.initialize();
-        
 
         microsoftTeams.authentication.getAuthToken({
             successCallback: async (token) => {
                 try {
-                    await msalInstance.handleRedirectPromise();
                     const accounts = msalInstance.getAllAccounts();
+                    let response;
+
                     if (accounts.length === 0) {
-                        // No user signed in
-                        msalInstance.loginRedirect(loginRequest);
+                        // No user signed in, trigger login popup
+                        response = await msalInstance.loginPopup(loginRequest);
                     } else {
-                        const response = await msalInstance.acquireTokenSilent({
+                        // User signed in, try to acquire token silently
+                        response = await msalInstance.acquireTokenSilent({
                             ...loginRequest,
                             account: accounts[0],
                         });
-                        resolve(response.accessToken);
                     }
+
+                    resolve(response.accessToken);
                 } catch (error) {
                     console.error("Error acquiring Graph token: ", error);
                     reject(error);
@@ -53,3 +56,4 @@ export const getAccessToken = async () => {
         });
     });
 };
+
