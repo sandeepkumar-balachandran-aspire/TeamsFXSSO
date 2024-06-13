@@ -1,9 +1,6 @@
 
 // src/authConfig.js
 import { PublicClientApplication } from "@azure/msal-browser";
-import { TeamsFx } from "@microsoft/teamsfx";
-
-const teamsfx = new TeamsFx();
 
 export const msalConfig = {
     auth: {
@@ -18,7 +15,6 @@ export const msalConfig = {
 };
 
 
-export const teamsfxInstance = teamsfx;
 export const msalInstance = await new PublicClientApplication(msalConfig);;
 export const loginRequest = {
     scopes: ["User.Read"]
