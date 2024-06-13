@@ -40,7 +40,7 @@
 
 // src/UserInfo.js
 import React, { useEffect, useState } from "react";
-import { getAccessToken } from "./auth";
+import { getAccessToken } from "./teamsSSO";
 
 const UserInfo = () => {
     const [user, setUser] = useState(null);
