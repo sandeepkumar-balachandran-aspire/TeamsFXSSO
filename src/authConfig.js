@@ -19,7 +19,7 @@ export const msalConfig = {
 
 
 export const teamsfxInstance = teamsfx;
-export const msalInstance = new PublicClientApplication(msalConfig);;
+export const msalInstance = await new PublicClientApplication(msalConfig);;
 export const loginRequest = {
     scopes: ["User.Read"]
 };
