@@ -19,6 +19,7 @@
 
 // src/auth.js
 // src/auth.js
+// src/auth.js
 import { msalInstance, loginRequest } from "./authConfig";
 import * as microsoftTeams from "@microsoft/teams-js";
 
@@ -43,6 +44,7 @@ export const getAccessToken = async () => {
                         });
                     }
 
+                    console.log("MSAL response: ", response); // Log MSAL response
                     resolve(response.accessToken);
                 } catch (error) {
                     console.error("Error acquiring Graph token: ", error);

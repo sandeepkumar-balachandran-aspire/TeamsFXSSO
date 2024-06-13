@@ -85,6 +85,7 @@
 //export default UserInfo;
 
 // src/UserInfo.js
+// src/UserInfo.js
 import React, { useEffect, useState } from "react";
 import { getAccessToken } from "./teamsSSO";
 
@@ -96,11 +97,19 @@ const UserInfo = () => {
         const fetchUser = async () => {
             try {
                 const token = await getAccessToken();
+                console.log("Token acquired: ", token); // Log the acquired token
                 const response = await fetch("https://graph.microsoft.com/v1.0/me", {
                     headers: {
                         Authorization: `Bearer ${token}`,
                     },
                 });
+
+                if (!response.ok) {
+                    // If response is not OK, throw an error with the status text
+                    const errorData = await response.json();
+                    throw new Error(`Error: ${response.status} - ${response.statusText}, ${JSON.stringify(errorData)}`);
+                }
+
                 const data = await response.json();
                 setUser(data);
             } catch (error) {
@@ -129,4 +138,5 @@ const UserInfo = () => {
 };
 
 export default UserInfo;
+
 
