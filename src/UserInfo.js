@@ -86,6 +86,7 @@
 
 // src/UserInfo.js
 // src/UserInfo.js
+// src/UserInfo.js
 import React, { useEffect, useState } from "react";
 import { getAccessToken } from "./teamsSSO";
 
@@ -138,5 +139,6 @@ const UserInfo = () => {
 };
 
 export default UserInfo;
+
 
 
