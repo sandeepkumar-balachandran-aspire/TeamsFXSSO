@@ -7,7 +7,7 @@
 
      microsoftTeams.authentication.getAuthToken({
        successCallback: (token) => {
-             return token;
+             resolve(token);
        },
        failureCallback: (error) => {
          console.error("Error getting token: ", error);
