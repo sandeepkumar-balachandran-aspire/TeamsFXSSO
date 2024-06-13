@@ -10,17 +10,7 @@
 
      microsoftTeams.authentication.getAuthToken({
        successCallback: (token) => {
-        msalInstance.handleRedirectPromise().then((tokenResponse) => {
-           if (tokenResponse) {
-             resolve(tokenResponse.accessToken);
-           } else {
-             msalInstance.acquireTokenSilent(loginRequest).then((tokenResponse) => {
-               resolve(tokenResponse.accessToken);
-             }).catch((error) => {
-               msalInstance.acquireTokenRedirect(loginRequest);
-             });
-           }
-         });
+             return token;
        },
        failureCallback: (error) => {
          console.error("Error getting token: ", error);
